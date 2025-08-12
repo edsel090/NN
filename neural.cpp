@@ -3,21 +3,17 @@
 #include <cmath>
 #include <string>
 #include <random>
+#include <vector>
 using namespace std;
 
 
 //Constructor
-Neuron::Neuron(int num_inputs) {
-    //we want our weights to be random numbers between -1 and 1
-    //random weights
-    for(int i = 0; i < num_inputs; i++) {
-        double random_weight = ((double) rand() / RAND_MAX) * 2 - 1; //random number between -1 and 1
-        this->weights.push_back(random_weight);
-    }
-    bias = ((double) rand() / RAND_MAX) * 2 - 1; //random number between -1 and 1
+Neuron::Neuron() {
+    //initialize bias randomly between -1 and 1
+    bias = rand()%(1-(-1) + 1) + (-1); //random number between -1 and 1
 }
 
-double Neuron::forward(vector<double>& inputs){
+double Neuron::forward(const vector<double>& inputs){
     //calculate the weighted sum of the inputs
     double sum = 0.0;
     for(int i = 0; i < inputs.size(); i++) {
@@ -25,13 +21,11 @@ double Neuron::forward(vector<double>& inputs){
     }
     //add the bias
     sum += bias;
+    cout<<sigmoid(sum);
     return sigmoid(sum);
 }
 
-//Get weights
-vector<double> Neuron::get_weights() {
-    return weights;
-}
+
 
 //Get bias
 double Neuron::get_bias() {

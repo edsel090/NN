@@ -1,8 +1,10 @@
 #include <vector>
 #include <unordered_map>
+#include <iostream>
+#include <vector>
 using namespace std;
-#ifndef NEURAL.H
-#define NEURAL.H
+#ifndef NEURAL_H
+#define NEURAL_H
 /*
 A single neuron will have 3 inputs and 1 output
 each input has a weight associated with it
@@ -17,9 +19,18 @@ class Neuron {
         vector<double> weights;
         double bias;
     public:
-        Neuron(int num_inputs);
-        vector<double> get_weights();
+        Neuron();
         double get_bias();
-        double forward(vector<double>& inputs);
-        double sigmoid(doublex);
+        double forward(const vector<double>& inputs);
+        double sigmoid(double x);
+        ///set the bias and weights
+        void set_weights(const vector<double>& new_weights) {
+            weights = new_weights;
+        }
+        void set_bias(double new_bias) {
+            bias = new_bias;
+        }
+        
 };
+
+#endif 
